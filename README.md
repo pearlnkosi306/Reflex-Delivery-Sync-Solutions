@@ -14,6 +14,17 @@ See **BLOCKERS.md** for the specific things that had to change (and what you
 should decide on) to make that work — please read it before treating this as
 production-ready.
 
+## Documentation
+
+- [`docs/ERD.md`](docs/ERD.md) — entity-relationship diagram (Mermaid) of the
+  data model implied by the current JSON shape.
+- [`docs/SYSTEM_DESIGN.md`](docs/SYSTEM_DESIGN.md) — order lifecycle, the
+  dispatch agent's matching/retry logic, and the storage/data-flow layer.
+- [`BLOCKERS.md`](BLOCKERS.md) — journal of porting issues and open decisions.
+
+GitHub renders the Mermaid diagrams in both docs automatically — just open
+them in the repo.
+
 ## Stack
 
 - React 18 + Vite
