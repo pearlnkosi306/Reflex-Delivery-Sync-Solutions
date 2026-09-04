@@ -25,3 +25,23 @@ I understand how the shared data is now stored in Supabase, but I still need to 
 
 **Resolution / Next Step:**
 The localStorage limitation was addressed by connecting the shared storage API to Supabase. The next step is to test that the delivery data is successfully saved to the `shared_app_state` table and can be accessed from another browser. After confirming that the shared database works, Supabase Realtime will be added so that changes to the delivery board can be reflected across users without relying only on the existing 2.5-second polling.
+
+### Entry 3- Tailwind Class Names — RESOLVED 03/09/2026 12:30 SAST
+
+**What I Learnt:**
+I learnt that Tailwind CSS needs to be able to detect class names in the source code when it builds the application. Dynamically creating class names, such as `bg-${color}-500`, can cause Tailwind to miss them during the production build. I also learnt that using complete class names directly in the code makes them easier for Tailwind to detect.
+
+**Status:**
+**Resolved — No action required.** The existing code was checked and no problematic dynamically constructed Tailwind class names were found.
+
+**Demonstration:**
+I checked the conditional Tailwind classes used in `App.jsx`, including classes such as `reflex-enter`, `animate-drive`, and `sm:col-span-2`. These classes are written as complete class names inside the template literals rather than being dynamically constructed. I also checked the Tailwind configuration and confirmed that it scans the `./src/**/*.{js,jsx}` files.
+
+**How It Was Fixed:**
+No changes were required because the existing implementation already uses Tailwind class names in a format that Tailwind can detect correctly. The classes are complete literal strings, so Tailwind's content scanner can identify and include them in the production build.
+
+**What I Understand:**
+I understand that Tailwind needs to detect the class names while scanning the project files. I understand that if a class is created dynamically, such as `bg-${color}-500`, Tailwind may not recognise it and the styling may not appear after the application is built. I also understand that using complete class names avoids this problem.
+
+**What I Don't Understand:**
+I do not fully understand how Tailwind's JIT compiler scans the source code and decides exactly which classes to include in the final production CSS. I also need to understand more about how dynamically generated class names can be handled when they are necessary in an application.
