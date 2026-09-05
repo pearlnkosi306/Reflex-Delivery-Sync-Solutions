@@ -107,7 +107,7 @@ Resolution / Next Step:
 
 Supabase has replaced browser-only storage for the shared delivery state. The next advancement is to move from periodic polling toward event-driven real-time synchronisation and stronger conflict handling.
 
-### Entry 6 — Real-Time Synchronisation Between Users — 04/09/2026 20:03 SAST
+### Entry 6 — Real-Time Synchronisation Between Users — 05/09/2026 20:03 SAST
 
 Attempted:
 
@@ -136,7 +136,7 @@ Resolution / Next Step:
 Investigate and implement Supabase Realtime subscriptions for the shared delivery state.
 
 The goal is for changes to delivery status, rider assignment and other important state changes to appear across the relevant user interfaces without requiring a manual refresh.
-### Entry 7 — Preventing Conflicting Delivery Updates — 04/09/2026 13:45 SAST
+### Entry 7 — Preventing Conflicting Delivery Updates — 05/09/2026 20:19 SAST
 
 Attempted:
 
@@ -165,4 +165,5 @@ Resolution / Next Step:
 Define clear delivery state transitions and ensure that important actions are validated before being committed.
 
 The next implementation should prevent an already-assigned delivery from being silently reassigned by another process.
+
 
