@@ -45,3 +45,93 @@ I understand that Tailwind needs to detect the class names while scanning the pr
 
 **What I Don't Understand:**
 I do not fully understand how Tailwind's JIT compiler scans the source code and decides exactly which classes to include in the final production CSS. I also need to understand more about how dynamically generated class names can be handled when they are necessary in an application.
+
+### Entry 4 — Pivot from a Prototype Demo to a Shared Delivery Coordination Platform — 16:10 SAST 03/09/2026
+
+**Attempted:**
+
+I reviewed the original Reflex prototype against the new Reflex Connect Africa prototype and realised that the project had moved beyond simply demonstrating an automated delivery board. The new direction focuses more strongly on connecting the three people involved in a delivery — the retailer, dispatcher and rider — through one coordinated workflow.
+
+The original prototype was mainly concerned with proving that a delivery request could be created, assigned to a rider and completed. The new prototype puts more emphasis on the complete operational journey, including who is responsible for each stage, what happens when something goes wrong, and how information is communicated between the different roles.
+
+**Main Observations:**
+
+The product is now structured around three distinct roles:
+
+Retailer — creates and monitors delivery requests.
+Dispatcher — supervises deliveries and intervenes when automation cannot complete an assignment.
+Rider — receives offers, accepts or declines jobs, confirms pickup and confirms delivery.
+
+This made the prototype feel more like an actual coordination system rather than a simple delivery tracking interface.
+
+**What I Learnt:**
+
+I learnt that a good logistics solution should not only automate the main successful path. It must also explain what happens when a rider declines an order, does not respond, becomes unavailable, or when a delivery cannot be completed.
+
+This led to the decision to keep the automated dispatch agent but give the dispatcher a clear human override.
+
+**What I Don't Fully Understand:**
+
+I still need to understand how these role permissions would be implemented securely in a production system where users have real accounts rather than selecting their role from the interface.
+
+**Resolution / Next Step:**
+
+The product direction was pivoted toward a role-based delivery coordination platform. The next stage is to strengthen the separation between demonstration roles and real authenticated users while keeping the workflow simple enough for small retailers and delivery teams.
+
+### Entry 5 — Replacing Browser-Only State with Cloud-Based Shared Storage — 16:34 SAST 03/09/2026
+
+Attempted:
+
+I continued addressing the biggest limitation from the earlier prototype: different users and browsers could not reliably work from the same delivery board.
+
+The original local-storage approach created an independent copy of the data in each browser. I therefore moved the shared storage layer to Supabase while keeping the existing window.storage interface used by the application.
+
+Main Observations:
+
+The repository now contains a Supabase client and a Supabase-backed storagePolyfill.js. Shared delivery information is written to the shared_app_state table instead of remaining only inside browser storage.
+
+This was important because the application already had a good delivery workflow. Rewriting the entire application just to change the storage mechanism would have introduced unnecessary risk.
+
+What I Learnt:
+
+I learnt the difference between an application's user interface and its persistence layer. The same application functions can remain in place while the underlying storage mechanism changes.
+
+I also learnt that making data "shared" is not the same as making the application fully real-time. A shared database allows different users to access the same source of data, but users still need a reliable way to receive changes made by other users.
+
+What I Don't Fully Understand:
+
+I still need to understand the best way to implement Supabase Realtime subscriptions and how to handle simultaneous updates without one user's changes overwriting another user's changes.
+
+Resolution / Next Step:
+
+Supabase has replaced browser-only storage for the shared delivery state. The next advancement is to move from periodic polling toward event-driven real-time synchronisation and stronger conflict handling.
+
+### Entry 6 — Real-Time Synchronisation Between Users — 04/09/2026 20:03 SAST
+
+Attempted:
+
+I started working on the next limitation after moving the application data into Supabase: ensuring that changes made by one user are reflected for other users without requiring the application to repeatedly refresh the data.
+
+The existing application can retrieve shared data, but retrieving shared data is different from receiving updates automatically.
+
+Main Observations:
+
+A central database solves the problem of where the data is stored, but it does not automatically mean that every open browser immediately updates its interface.
+
+This means that a retailer, dispatcher and rider could potentially be looking at different versions of the delivery board for a short period.
+
+What I Learnt:
+
+I learnt the difference between shared persistence and real-time synchronisation.
+
+The database provides a common source of truth, while a real-time subscription provides a mechanism for clients to react when that source of truth changes.
+
+What I Don't Understand:
+
+I am still working out exactly which database events should trigger interface updates and whether every change should be broadcast to every role.
+
+Resolution / Next Step:
+
+Investigate and implement Supabase Realtime subscriptions for the shared delivery state.
+
+The goal is for changes to delivery status, rider assignment and other important state changes to appear across the relevant user interfaces without requiring a manual refresh.
