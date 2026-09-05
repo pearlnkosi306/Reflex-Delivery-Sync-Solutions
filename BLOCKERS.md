@@ -46,6 +46,7 @@ I understand that Tailwind needs to detect the class names while scanning the pr
 **What I Don't Understand:**
 I do not fully understand how Tailwind's JIT compiler scans the source code and decides exactly which classes to include in the final production CSS. I also need to understand more about how dynamically generated class names can be handled when they are necessary in an application.
 
+<<<<<<< HEAD
 ### Entry 4 — Pivot from a Prototype Demo to a Shared Delivery Coordination Platform — 16:10 SAST 03/09/2026
 
 **Attempted:**
@@ -135,3 +136,5 @@ Resolution / Next Step:
 Investigate and implement Supabase Realtime subscriptions for the shared delivery state.
 
 The goal is for changes to delivery status, rider assignment and other important state changes to appear across the relevant user interfaces without requiring a manual refresh.
+=======
+>>>>>>> c34e52dac1ed74afec8515da2271fdc1c026144c
