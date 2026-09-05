@@ -195,3 +195,32 @@ Resolution / Next Step:
 Define explicit escalation conditions.
 
 When automation cannot successfully assign or progress a delivery, the system should clearly flag the delivery for dispatcher intervention rather than leaving it in an ambiguous state.
+### Entry 9 — Role Separation and Permissions — 05/09/2026 09:15 SAST
+
+Attempted:
+
+I reviewed the three-role structure and considered how the application should prevent users from performing actions belonging to another role.
+
+The prototype currently demonstrates the roles through the interface, but a production system would require actual authentication and authorisation.
+
+Main Observations:
+
+The retailer, dispatcher and rider have different responsibilities.
+
+A rider should not be able to perform dispatcher functions, while a retailer should not be able to change another rider's operational status.
+
+What I Learnt:
+
+I learnt that hiding an interface button is not the same as securing an action.
+
+If the application eventually has real authenticated users, permissions need to be enforced at the backend/database level as well as in the interface.
+
+What I Don't Understand:
+
+I still need to understand the best way to connect Supabase authentication with the application's role structure and Row Level Security policies.
+
+Resolution / Next Step:
+
+Define the permissions for each role before implementing full authentication.
+
+The prototype will continue demonstrating the workflow, while the architecture should be prepared for proper authenticated role enforcement.
