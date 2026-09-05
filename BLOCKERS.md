@@ -195,7 +195,7 @@ Resolution / Next Step:
 Define explicit escalation conditions.
 
 When automation cannot successfully assign or progress a delivery, the system should clearly flag the delivery for dispatcher intervention rather than leaving it in an ambiguous state.
-### Entry 9 — Role Separation and Permissions — 05/09/2026 09:15 SAST
+### Entry 9 — Role Separation and Permissions — 05/09/2026 20:27 SAST
 
 Attempted:
 
@@ -224,3 +224,62 @@ Resolution / Next Step:
 Define the permissions for each role before implementing full authentication.
 
 The prototype will continue demonstrating the workflow, while the architecture should be prepared for proper authenticated role enforcement.
+### Entry 10 — Delivery State and Workflow Consistency — 05/09/2026 20:27 SAST
+
+Attempted:
+
+I reviewed the delivery workflow to identify whether all three roles have a consistent understanding of the delivery's current state.
+
+The addition of retailer, dispatcher and rider workflows increased the number of possible states compared with the original prototype.
+
+Main Observations:
+
+A delivery can move through multiple stages, including creation, assignment, acceptance, pickup and completion.
+
+There are also exception states such as declined assignments, unavailable riders and deliveries requiring dispatcher intervention.
+
+What I Learnt:
+
+I learnt that adding more roles also increases the importance of having clearly defined state transitions.
+
+If different parts of the application use different meanings for the same status, the shared board can become inconsistent.
+
+What I Don't Fully Understand:
+
+I still need to determine the final list of delivery states and which role is allowed to trigger each transition.
+
+Resolution / Next Step:
+
+Create a single delivery-state model that defines the valid transitions.
+
+Use the same state definitions across the retailer, dispatcher and rider views so that the shared board represents one consistent workflow.
+
+### Entry 11 — Testing the Shared Multi-User Workflow — 05/09/2026 20:29 SAST
+
+Attempted:
+
+I moved from testing individual functions toward testing the application as a multi-user workflow.
+
+The main objective is to verify that the shared storage solution actually solves the original blocker rather than only changing where the data is stored.
+
+Main Observations:
+
+Testing needs to involve more than one browser or user session.
+
+The workflow needs to be checked from the perspective of the retailer, dispatcher and rider, especially when one role performs an action that another role should see.
+
+What I Learnt:
+
+I learnt that a prototype can appear functional when tested by one person but still fail when multiple people interact with the same state.
+
+Multi-user testing is therefore necessary to validate the main reason for moving away from local storage.
+
+What I Don't Understand:
+
+I still need to confirm how the application behaves when two sessions perform actions at nearly the same time and whether real-time updates remain consistent.
+
+Resolution / Next Step:
+
+Run structured multi-browser testing.
+
+Create a delivery from the retailer view, observe it from the dispatcher view, assign or offer it to a rider, and confirm that each state change is reflected correctly across the relevant sessions.
