@@ -283,3 +283,51 @@ Resolution / Next Step:
 Run structured multi-browser testing.
 
 Create a delivery from the retailer view, observe it from the dispatcher view, assign or offer it to a rider, and confirm that each state change is reflected correctly across the relevant sessions.
+### Entry 12 — From Functional Prototype to Reliable Shared Platform — 05/09/2026 20:31 SAST
+
+Attempted:
+
+I reviewed the blockers encountered throughout the prototype development to determine what remains between the current demonstration and a reliable shared delivery coordination platform.
+
+The major progression has been from browser-only storage, to Supabase shared storage, to the need for real-time synchronisation, conflict handling, role separation and reliable workflow states.
+
+Main Observations:
+
+The biggest blocker is no longer simply getting the application to run.
+
+The more important challenge is ensuring that multiple people can use the same system at the same time without receiving conflicting information or accidentally overwriting each other's actions.
+
+The product has also become more complex because it now coordinates three roles instead of demonstrating a single delivery workflow.
+
+What I Learnt:
+
+I learnt that moving from a prototype to a shared operational system introduces problems that are not visible in a single-user demonstration.
+
+The database, real-time layer, permissions, workflow states and human override process all need to work together.
+
+I also learnt that not every feature needs to be solved immediately. The prototype needs to prove the most important workflow first before adding unnecessary production complexity.
+
+What I Don't Fully Understand:
+
+I still need to validate the complete real-time workflow and determine the appropriate level of authentication, conflict handling and database security for the final version.
+
+Resolution / Next Step:
+
+The next priority is to validate the complete multi-user workflow using Supabase as the shared source of truth.
+
+The prototype should demonstrate:
+
+A retailer creating a delivery.
+The delivery appearing on the shared dispatcher board.
+The dispatcher or automated agent assigning the delivery.
+The rider receiving and responding to the delivery.
+Pickup and delivery status being updated.
+Other users receiving the updated status.
+Failed or declined assignments being escalated to the dispatcher.
+The shared state remaining consistent when multiple users interact with the same delivery.
+
+Once this workflow is stable, the remaining work can focus on authentication, stronger role permissions, conflict handling and production-level reliability.
+
+Overall Status:
+
+In progress — shared storage has been addressed, but real-time synchronisation, multi-user consistency, role enforcement and full workflow validation remain the main blockers.
