@@ -136,5 +136,5 @@ Resolution / Next Step:
 Investigate and implement Supabase Realtime subscriptions for the shared delivery state.
 
 The goal is for changes to delivery status, rider assignment and other important state changes to appear across the relevant user interfaces without requiring a manual refresh.
-=======
->>>>>>> c34e52dac1ed74afec8515da2271fdc1c026144c
+
+
