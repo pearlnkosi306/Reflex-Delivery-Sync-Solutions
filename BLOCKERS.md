@@ -166,4 +166,32 @@ Define clear delivery state transitions and ensure that important actions are va
 
 The next implementation should prevent an already-assigned delivery from being silently reassigned by another process.
 
+### Entry 8 — Automated Dispatch vs Human Override — 04/09/2026 17:30 SAST
 
+Attempted:
+
+I reviewed how the automated dispatch agent should interact with the dispatcher role.
+
+The original prototype focused more heavily on automation, but the new product direction requires a human operator to intervene when the automated process cannot complete a delivery assignment.
+
+Main Observations:
+
+Automation is useful for the normal workflow, but real delivery operations include exceptions.
+
+A rider may decline a delivery, fail to respond, become unavailable or be unsuitable for a particular delivery.
+
+What I Learnt:
+
+I learnt that the system should not treat automation as a replacement for the dispatcher.
+
+Instead, automation should handle predictable decisions while the dispatcher acts as an escalation and override mechanism.
+
+What I Don't Fully Understand:
+
+I still need to determine exactly when control should move from the automated dispatch process to the dispatcher and how that handover should be represented in the delivery status.
+
+Resolution / Next Step:
+
+Define explicit escalation conditions.
+
+When automation cannot successfully assign or progress a delivery, the system should clearly flag the delivery for dispatcher intervention rather than leaving it in an ambiguous state.
