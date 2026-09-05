@@ -136,5 +136,33 @@ Resolution / Next Step:
 Investigate and implement Supabase Realtime subscriptions for the shared delivery state.
 
 The goal is for changes to delivery status, rider assignment and other important state changes to appear across the relevant user interfaces without requiring a manual refresh.
+### Entry 7 — Preventing Conflicting Delivery Updates — 04/09/2026 13:45 SAST
 
+Attempted:
+
+After moving toward shared real-time data, I identified another blocker: multiple users may attempt to change the same delivery at approximately the same time.
+
+For example, a dispatcher may assign a rider while the automated dispatch process is also attempting to assign the same delivery.
+
+Main Observations:
+
+The problem is no longer simply whether data can be stored. The application must also determine which update should be accepted when multiple actions occur close together.
+
+This becomes particularly important because the system has three different roles that can interact with the same delivery.
+
+What I Learnt:
+
+I learnt that shared applications need rules for concurrent updates.
+
+It is not enough for the application to send updates to the database. The application must also protect important state transitions from being accidentally overwritten.
+
+What I Don't Understand:
+
+I am still learning how database transactions, conditional updates and conflict detection should be implemented for this type of workflow.
+
+Resolution / Next Step:
+
+Define clear delivery state transitions and ensure that important actions are validated before being committed.
+
+The next implementation should prevent an already-assigned delivery from being silently reassigned by another process.
 
