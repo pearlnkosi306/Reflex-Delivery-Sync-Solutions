@@ -26,13 +26,11 @@ GitHub renders the Mermaid diagrams in both docs automatically — just open
 them in the repo.
 
 ## Stack
-
 - React 18 + Vite
 - Tailwind CSS (utility classes used throughout the original component)
 - lucide-react (icons)
 
 ## Getting started
-
 ```bash
 npm install
 npm run dev
